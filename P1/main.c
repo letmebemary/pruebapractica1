@@ -55,7 +55,7 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
                 printf("Party %s numvotes %d (%.2f%)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int) * 100);
             }
             printf("Null votes xx\n");
-            printf("Participation: %d votes from %d voters (%.2f%)");
+            printf("Participation: %d votes from %d voters (%.2f%)\n",0,0,0);
             break;
     }
 

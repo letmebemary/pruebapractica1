@@ -108,8 +108,8 @@ int main(int nargs, char **args) {
 
     readTasks(file_name, &list);
 
-    deleteList(list);
-// hula
+    deleteList(&list);
+    // hula
 
     return 0;
 }

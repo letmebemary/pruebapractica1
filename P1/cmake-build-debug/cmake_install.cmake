@@ -1,4 +1,4 @@
-# Install script for directory: /Users/mariamartinezsotelo/CLionProjects/Practica1/practica1git/P1
+# Install script for directory: /cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/mariamartinezsotelo/CLionProjects/Practica1/practica1git/P1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

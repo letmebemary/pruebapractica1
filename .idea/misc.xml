@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$/P1">
-=======
-  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$/../P1">
->>>>>>> xxx
     <contentRoot DIR="$PROJECT_DIR$" />
   </component>
   <component name="JavaScriptSettings">

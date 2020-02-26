@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/dynamic_list.h
+types.h
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/types.h
+
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/list/list.h
+stdbool.h
+-
+../types.h
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/types.h
+
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/main.c
+stdio.h
+-
+string.h
+-
+types.h
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/types.h
+string.h
+-
+static_list.h
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/static_list.h
+dynamic_list.h
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/dynamic_list.h
+list/list.h
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/list/list.h
+
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/static_list.h
+types.h
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/types.h
+
+/cygdrive/c/Users/jerop/Desktop/pruebapractica1/P1/types.h
+

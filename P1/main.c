@@ -25,6 +25,17 @@
 #include "list/list.h"
 #endif
 
+void new (char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list) {
+    tItemL item1;
+    tPosL pos;
+
+    strcpy(item1.partyName, param);
+    item1.numVotes = 0;
+    insertItem(item1,LNULL, &list);
+    printf("%s %c: party %s\n", command_number, command, item1.partyName);
+    printf("* New: party %s\n", item1.partyName);
+}
+
 void stats (char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list){
     tItemL item1;
     tPosL pos;
@@ -46,17 +57,20 @@ void stats (char command_number[CODE_LENGTH+1], char command, char param[NAME_LE
 
 }
 
-void new(char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list){
+void vote (char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list) {
     tItemL item1;
     tPosL pos;
 
-    strcpy(item1.partyName, param);
-    item1.numVotes = 0;
-    insertItem(item1, LNULL, &list);
-    printf("%s %c: party %s\n", command_number, command, item1.partyName);
-    printf("* New: party %s\n", item1.partyName);
-
+    printf("%s %c: party %s\n", command_number, command, param);
+    if (findItem(param,*list) == LNULL) {
+        printf("+ Error: Vote not possible. Party %s not found. NULLVOTE", param);
+    }else {
+        item1 = getItem(findItem(param, *list), *list);
+        updateVotes(item1.numVotes+1,findItem(param,*list), &list);
+        printf("* Vote: party %s numvotes %c", item1.partyName, item1.numVotes+1);
+    }
 }
+
 
 void processCommand(char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list) {
     tItemL item1;
@@ -65,7 +79,7 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
 
     switch(command) {
         case 'N': {
-            new(command_number, command, param, &list);
+            new(command_number,command,param, &list);
             break;
         }
 
@@ -75,15 +89,7 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
         }
 
         case 'V': {
-            printf("%s %c: party %s\n", command_number, command, param);
-            if (findItem(param,*list) == LNULL) {
-                printf("+ Error: Vote not possible. Party %s not found. NULLVOTE", param);
-                break;
-            }
-            item1 = getItem(findItem(param, *list), *list);
-            updateVotes(item1.numVotes+1,findItem(param,*list), &list);
-            printf("* Vote: party %s numvotes %c", item1.partyName, item1.numVotes+1);
-
+            vote(command_number,command,param, &list);
         }
 
         default: {

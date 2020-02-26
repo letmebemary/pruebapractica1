@@ -57,11 +57,17 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
             printf("Null votes xx\n");
             printf("Participation: %d votes from %d voters (%.2f%)\n",0,0,0);
             break;
-    }
+        }
 
         case 'V': {
-            printf("Read: %s %c %s.\n", command_number, command, param);
-            break;
+            printf("%s %c: party %s\n", command_number, command, param);
+            if (findItem(param,*list) == LNULL) {
+                printf("+ Error: Vote not possible. Party %s not found. NULLVOTE", param);
+                break;
+            }
+            item1 = getItem(findItem(param, *list), *list);
+            updateVotes(item1.numVotes+1,findItem(param,*list), &list);
+
         }
 
         default: {
@@ -108,8 +114,8 @@ int main(int nargs, char **args) {
 
     readTasks(file_name, &list);
 
-    deleteList(list);
-// hula
+    deleteList(&list);
+    // hula
 
     return 0;
 }

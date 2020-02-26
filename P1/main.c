@@ -67,6 +67,7 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
             }
             item1 = getItem(findItem(param, *list), *list);
             updateVotes(item1.numVotes+1,findItem(param,*list), &list);
+            printf("* Vote: party %s numvotes %c", item1.partyName, item1.numVotes+1);
 
         }
 

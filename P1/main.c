@@ -112,9 +112,9 @@ int main(int nargs, char **args) {
     if (nargs > 1) {
         file_name = args[1];
     } else {
-        #ifdef INPUT_FILE
+#ifdef INPUT_FILE
         file_name = INPUT_FILE;
-        #endif
+#endif
     }
 
     tList list;

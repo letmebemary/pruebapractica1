@@ -42,7 +42,7 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
             break;
         }
 
- /*       case 'S': {
+        case 'S': {
             int param_int;
             sscanf(param, "%d", &param_int);
             printf("%s %c: totalvoters %d\n", command_number, command, param_int);
@@ -58,7 +58,7 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
             }
             printf("Null votes xx\n");
             break;
-    }*/
+    }
 
         case 'V': {
             printf("Read: %s %c %s.\n", command_number, command, param);

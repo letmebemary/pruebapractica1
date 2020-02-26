@@ -25,17 +25,7 @@
 #include "list/list.h"
 #endif
 
-void new (char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList *list) {
-    tItemL item1;
-    tPosL pos;
 
-    strcpy(item1.partyName, param);
-    item1.numVotes = 0;
-    insertItem(item1,LNULL, &list);
-    printf("%s %c: party %s\n", command_number, command, item1.partyName);
-    printf("* New: party %s\n", item1.partyName);
-
-}
 
 void processCommand(char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list) {
     tItemL item1;
@@ -44,8 +34,11 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
 
     switch(command) {
         case 'N': {
-            new(command_number, command, param, &list);
-
+            strcpy(item1.partyName, param);
+            item1.numVotes = 0;
+            insertItem(item1,LNULL, &list);
+            printf("%s %c: party %s\n", command_number, command, item1.partyName);
+            printf("* New: party %s\n", item1.partyName);
             break;
         }
 

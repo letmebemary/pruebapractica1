@@ -1,4 +1,4 @@
-/* 
+/*
  * TITLE: PROGRAMMING II LABS
  * SUBTITLE: Practical 1
  * AUTHOR 1: ***************************** LOGIN 1: **********
@@ -25,52 +25,6 @@
 #include "list/list.h"
 #endif
 
-void new (char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list) {
-    tItemL item1;
-    tPosL pos;
-
-    strcpy(item1.partyName, param);
-    item1.numVotes = 0;
-    insertItem(item1,LNULL, &list);
-    printf("%d", insertItem(item1,LNULL, &list));
-    printf("%s %c: party %s\n", command_number, command, item1.partyName);
-    printf("* New: party %s\n", item1.partyName);
-}
-
-void stats (char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list){
-    tItemL item1;
-    tPosL pos;
-
-    int param_int, tvotes = 0;
-    sscanf(param, "%d", &param_int);
-    printf("%s %c: totalvoters %d\n", command_number, command, param_int);
-
-    item1 = getItem(first(*list), *list);
-    printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int)*100);
-//            while (next(pos, *list) != LNULL) {
-//                pos = next(pos, *list);
-//                item1 = getItem(pos, *list);
-//                printf("Party %s numvotes %d (%.2f%)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int)*100);
-//                tvotes++;
-//            }
-    printf("Null votes xx\n");
-    printf("Participation: %d votes from %d voters (%.2f%)\n",tvotes,param_int,(tvotes/param_int)*100);
-
-}
-
-void vote (char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list) {
-    tItemL item1;
-    tPosL pos;
-
-    printf("%s %c: party %s\n", command_number, command, param);
-    if (findItem(param,*list) == LNULL) {
-        printf("+ Error: Vote not possible. Party %s not found. NULLVOTE", param);
-    }else {
-        item1 = getItem(findItem(param, *list), *list);
-        updateVotes(item1.numVotes+1,findItem(param,*list), &list);
-        printf("* Vote: party %s numvotes %c", item1.partyName, item1.numVotes+1);
-    }
-}
 
 
 void processCommand(char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1], tList* list) {
@@ -80,17 +34,41 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
 
     switch(command) {
         case 'N': {
-            new(command_number,command,param, &list);
+            printf("%s %c: party %s\n", command_number, command, param);
+            strcpy(item1.partyName, param);
+            item1.numVotes = 0;
+            insertItem(item1,LNULL, &list);
+            printf("* New: party %s\n", item1.partyName);
             break;
         }
 
         case 'S': {
-            stats(command_number,command,param, &list);
+            int param_int;
+            sscanf(param,"%d", &param_int);
+            printf("%s %c: totalvoters %d\n", command_number, command, param_int);
+
+            item1 = getItem(first(*list), *list);
+
+            printf("Party %s numvotes %d (%.2f%)\n", item1.partyName, item1.numVotes,(item1.numVotes/param_int)*100);
+            while(next(pos,*list) == LNULL){
+                pos = next(pos,*list);
+                item1 = getItem(pos, *list);
+                printf("Party %s numvotes %d (%.2f%)\n", item1.partyName, item1.numVotes,(item1.numVotes/param_int)*100);
+            }
+            printf("Null votes xx\n");
             break;
         }
 
         case 'V': {
-            vote(command_number,command,param, &list);
+            printf("%s %c: party %s\n", command_number, command, param);
+            if (findItem(param,*list) == LNULL) {
+                printf("+ Error: Vote not possible. Party %s not found. NULLVOTE\n", param);
+            }else {
+                item1 = getItem(findItem(param, *list), *list);
+                updateVotes(item1.numVotes + 1, findItem(param, *list), &list);
+                printf("* Vote: party %s numvotes %c\n", item1.partyName, item1.numVotes + 1);
+            }
+            break;
         }
 
         default: {
@@ -122,14 +100,14 @@ void readTasks(char *filename, tList* list) {
 int main(int nargs, char **args) {
 
 
-    char *file_name = "new.txt";
+    char *file_name = "vote.txt";
 
     if (nargs > 1) {
         file_name = args[1];
     } else {
-#ifdef INPUT_FILE
+        #ifdef INPUT_FILE
         file_name = INPUT_FILE;
-#endif
+        #endif
     }
 
     tList list;
@@ -138,7 +116,8 @@ int main(int nargs, char **args) {
     readTasks(file_name, &list);
 
     deleteList(&list);
-    // comentario 2
+
+    //comentario
 
     return 0;
 }

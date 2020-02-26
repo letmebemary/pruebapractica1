@@ -43,19 +43,20 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
         }
 
         case 'S': {
-            int param_int;
+            int param_int, tvotes = 0;
             sscanf(param, "%d", &param_int);
             printf("%s %c: totalvoters %d\n", command_number, command, param_int);
 
             item1 = getItem(first(*list), *list);
-            printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int) * 100);
+            printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int)*100);
             while (next(pos, *list) == LNULL) {
                 pos = next(pos, *list);
                 item1 = getItem(pos, *list);
-                printf("Party %s numvotes %d (%.2f%)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int) * 100);
+                printf("Party %s numvotes %d (%.2f%)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int)*100);
+                tvotes++;
             }
             printf("Null votes xx\n");
-            printf("Participation: %d votes from %d voters (%.2f%)\n",0,0,0);
+            printf("Participation: %d votes from %d voters (%.2f%)\n",tvotes,param_int,(tvotes/param_int)*100);
             break;
         }
 

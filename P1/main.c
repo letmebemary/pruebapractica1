@@ -48,15 +48,14 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
             printf("%s %c: totalvoters %d\n", command_number, command, param_int);
 
             item1 = getItem(first(*list), *list);
-            printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes,
-                   (item1.numVotes / param_int) * 100);
+            printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int) * 100);
             while (next(pos, *list) == LNULL) {
                 pos = next(pos, *list);
                 item1 = getItem(pos, *list);
-                printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes,
-                       (item1.numVotes / param_int) * 100);
+                printf("Party %s numvotes %d (%.2f%)\n", item1.partyName, item1.numVotes, (item1.numVotes / param_int) * 100);
             }
             printf("Null votes xx\n");
+            printf("Participation: %d votes from %d voters (%.2f%)\n",0,0,0);
             break;
     }
 
@@ -109,6 +108,8 @@ int main(int nargs, char **args) {
 
     readTasks(file_name, &list);
 
+    deleteList(list);
+// hula
 
     return 0;
 }

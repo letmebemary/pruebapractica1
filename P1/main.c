@@ -62,7 +62,7 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
         }
 
         case 'S': {
-            stats(command_number,command,param, list);
+            stats(command_number,command,param, &list);
             break;
         }
 
